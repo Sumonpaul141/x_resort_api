@@ -1,0 +1,105 @@
+import { PrismaService } from '../prisma/prisma.service';
+import { CreatePackageDto } from './dto/create-package.dto';
+import { UpdatePackageDto } from './dto/update-package.dto';
+export declare class PackagesService {
+    private prisma;
+    constructor(prisma: PrismaService);
+    findAll(): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }[]>;
+    findActive(): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }[]>;
+    findById(id: string): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    create(createPackageDto: CreatePackageDto): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    update(id: string, updatePackageDto: UpdatePackageDto): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    toggleStatus(id: string): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    remove(id: string): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+}

@@ -1,0 +1,105 @@
+import { PackagesService } from './packages.service';
+import { CreatePackageDto } from './dto/create-package.dto';
+import { UpdatePackageDto } from './dto/update-package.dto';
+export declare class PackagesController {
+    private readonly packagesService;
+    constructor(packagesService: PackagesService);
+    getActivePackages(): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }[]>;
+    getAdminPackages(): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }[]>;
+    getAdminPackage(id: string): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    createPackage(createPackageDto: CreatePackageDto): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    updatePackage(id: string, updatePackageDto: UpdatePackageDto): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    togglePackageStatus(id: string): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+    removePackage(id: string): Promise<{
+        includes: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        shortDescription: string;
+        description: string;
+        price: number;
+        image: string | null;
+        title: string;
+        isActive: boolean;
+        duration: string;
+    }>;
+}

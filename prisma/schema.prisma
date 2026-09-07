@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Room {
+  id               String      @id @default(cuid())
+  name             String
+  slug             String      @unique
+  shortDescription String
+  description      String
+  price            Int
+  discountPrice    Int?
+  capacity         Int
+  size             Int?
+  bedType          String?
+  isFeatured       Boolean     @default(false)
+  isPublished      Boolean     @default(false)
+  amenities        String[]
+  images           RoomImage[]
+  bookings         Booking[]
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+}
+
+model RoomImage {
+  id        String @id @default(cuid())
+  url       String
+  alt       String
+  roomId    String
+  room      Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  sortOrder Int    @default(0)
+}
+
+model Facility {
+  id               String    @id @default(cuid())
+  name             String
+  slug             String    @unique
+  shortDescription String
+  description      String
+  icon             String
+  image            String?
+  isFeatured       Boolean   @default(false)
+  isPublished      Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model Offer {
+  id               String    @id @default(cuid())
+  title            String
+  slug             String    @unique
+  shortDescription String
+  description      String
+  discountPercent  Int
+  validFrom        DateTime
+  validTo          DateTime
+  terms            String[]
+  isActive         Boolean   @default(true)
+  image            String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model Package {
+  id               String    @id @default(cuid())
+  title            String
+  slug             String    @unique
+  shortDescription String
+  description      String
+  price            Int
+  duration         String
+  includes         String[]
+  isActive         Boolean   @default(true)
+  image            String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model GalleryItem {
+  id          String   @id @default(cuid())
+  title       String
+  url         String
+  category    String
+  isPublished Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  guestName   String
+  guestEmail  String
+  guestPhone  String?
+  roomId      String
+  room        Room          @relation(fields: [roomId], references: [id])
+  checkIn     DateTime
+  checkOut    DateTime
+  guests      Int
+  total       Int
+  status      BookingStatus @default(PENDING)
+  notes       String?
+  requestedAt DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CHECKED_IN
+  CHECKED_OUT
+  CANCELLED
+}
+
+model AdminUser {
+  id        String     @id @default(cuid())
+  name      String
+  email     String     @unique
+  password  String
+  role      UserRole   @default(EDITOR)
+  status    UserStatus @default(ACTIVE)
+  lastLogin DateTime?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+enum UserRole {
+  ADMIN
+  SUPER_ADMIN
+  EDITOR
+}
+
+enum UserStatus {
+  ACTIVE
+  INVITED
+  DISABLED
+}
+
+model SiteSettings {
+  id           String   @id @default("singleton")
+  siteName     String   @default("Dream Square Resort")
+  tagline      String   @default("Where Luxury Meets Nature")
+  contactEmail String
+  contactPhone String
+  address      String
+  currency     String   @default("BDT")
+  checkInTime  String   @default("2:00 PM")
+  checkOutTime String   @default("12:00 PM")
+  updatedAt    DateTime @updatedAt
+}

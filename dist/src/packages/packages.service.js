@@ -1,0 +1,71 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PackagesService = void 0;
+const common_1 = require("@nestjs/common");
+const prisma_service_1 = require("../prisma/prisma.service");
+let PackagesService = class PackagesService {
+    prisma;
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    async findAll() {
+        return this.prisma.package.findMany({
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findActive() {
+        return this.prisma.package.findMany({
+            where: { isActive: true },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findById(id) {
+        const pkg = await this.prisma.package.findUnique({
+            where: { id },
+        });
+        if (!pkg) {
+            throw new common_1.NotFoundException(`Package with id "${id}" not found`);
+        }
+        return pkg;
+    }
+    async create(createPackageDto) {
+        return this.prisma.package.create({
+            data: createPackageDto,
+        });
+    }
+    async update(id, updatePackageDto) {
+        await this.findById(id);
+        return this.prisma.package.update({
+            where: { id },
+            data: updatePackageDto,
+        });
+    }
+    async toggleStatus(id) {
+        const pkg = await this.findById(id);
+        return this.prisma.package.update({
+            where: { id },
+            data: { isActive: !pkg.isActive },
+        });
+    }
+    async remove(id) {
+        await this.findById(id);
+        return this.prisma.package.delete({
+            where: { id },
+        });
+    }
+};
+exports.PackagesService = PackagesService;
+exports.PackagesService = PackagesService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], PackagesService);
+//# sourceMappingURL=packages.service.js.map
