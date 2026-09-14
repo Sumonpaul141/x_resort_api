@@ -32,4 +32,8 @@ export class UpdateSettingsDto {
   @IsString()
   @IsOptional()
   checkOutTime?: string;
+
+  @IsString()
+  @IsOptional()
+  resortDescription?: string;
 }

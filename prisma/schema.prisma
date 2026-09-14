@@ -141,14 +141,15 @@ enum UserStatus {
 }
 
 model SiteSettings {
-  id           String   @id @default("singleton")
-  siteName     String   @default("Dream Square Resort")
-  tagline      String   @default("Where Luxury Meets Nature")
-  contactEmail String
-  contactPhone String
-  address      String
-  currency     String   @default("BDT")
-  checkInTime  String   @default("2:00 PM")
-  checkOutTime String   @default("12:00 PM")
-  updatedAt    DateTime @updatedAt
+  id               String   @id @default("singleton")
+  siteName         String   @default("Dream Square Resort")
+  tagline          String   @default("Where Luxury Meets Nature")
+  contactEmail     String
+  contactPhone     String
+  address          String
+  currency         String   @default("BDT")
+  checkInTime      String   @default("2:00 PM")
+  checkOutTime     String   @default("12:00 PM")
+  resortDescription String  @default("Discover serenity at Dream Square Resort. Luxurious accommodations, world-class amenities and warm hospitality — all in one beautiful destination.")
+  updatedAt        DateTime @updatedAt
 }

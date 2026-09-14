@@ -7,4 +7,5 @@ export declare class UpdateSettingsDto {
     currency?: string;
     checkInTime?: string;
     checkOutTime?: string;
+    resortDescription?: string;
 }

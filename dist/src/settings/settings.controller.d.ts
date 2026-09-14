@@ -14,6 +14,7 @@ export declare class SettingsController {
         currency: string;
         checkInTime: string;
         checkOutTime: string;
+        resortDescription: string;
     }>;
     findAdmin(): Promise<{
         id: string;
@@ -26,6 +27,7 @@ export declare class SettingsController {
         currency: string;
         checkInTime: string;
         checkOutTime: string;
+        resortDescription: string;
     }>;
     update(dto: UpdateSettingsDto): Promise<{
         id: string;
@@ -38,5 +40,6 @@ export declare class SettingsController {
         currency: string;
         checkInTime: string;
         checkOutTime: string;
+        resortDescription: string;
     }>;
 }

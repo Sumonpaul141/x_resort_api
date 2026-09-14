@@ -579,6 +579,8 @@ async function main() {
       currency: 'BDT',
       checkInTime: '2:00 PM',
       checkOutTime: '12:00 PM',
+      resortDescription:
+        'Discover serenity at Dream Square Resort. Luxurious accommodations, world-class amenities and warm hospitality — all in one beautiful destination.',
     },
   });
 

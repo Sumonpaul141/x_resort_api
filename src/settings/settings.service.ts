@@ -38,6 +38,7 @@ export class SettingsService {
         currency: dto.currency,
         checkInTime: dto.checkInTime,
         checkOutTime: dto.checkOutTime,
+        resortDescription: dto.resortDescription,
       },
       update: dto,
     });

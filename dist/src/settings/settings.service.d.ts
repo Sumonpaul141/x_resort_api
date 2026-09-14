@@ -14,6 +14,7 @@ export declare class SettingsService {
         currency: string;
         checkInTime: string;
         checkOutTime: string;
+        resortDescription: string;
     }>;
     update(dto: UpdateSettingsDto): Promise<{
         id: string;
@@ -26,5 +27,6 @@ export declare class SettingsService {
         currency: string;
         checkInTime: string;
         checkOutTime: string;
+        resortDescription: string;
     }>;
 }

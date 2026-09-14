@@ -20,6 +20,7 @@ class UpdateSettingsDto {
     currency;
     checkInTime;
     checkOutTime;
+    resortDescription;
 }
 exports.UpdateSettingsDto = UpdateSettingsDto;
 __decorate([
@@ -62,4 +63,9 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateSettingsDto.prototype, "checkOutTime", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateSettingsDto.prototype, "resortDescription", void 0);
 //# sourceMappingURL=update-settings.dto.js.map
